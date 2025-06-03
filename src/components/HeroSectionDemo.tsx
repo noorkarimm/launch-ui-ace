@@ -1,3 +1,4 @@
+
 "use client";
 
 import { motion } from "motion/react";
@@ -33,6 +34,20 @@ export default function HeroSectionOne() {
                 className="mr-2 inline-block"
               >
                 {word}
+                {word === "days" && (
+                  <motion.label
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{
+                      duration: 0.3,
+                      delay: (index + 1) * 0.1,
+                      ease: "easeInOut",
+                    }}
+                    className="checkBox ml-4 inline-block align-middle"
+                  >
+                    <input type="checkbox" />
+                  </motion.label>
+                )}
               </motion.span>
             ))}
         </h1>
