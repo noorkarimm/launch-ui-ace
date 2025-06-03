@@ -34,6 +34,20 @@ export default function HeroSectionOne() {
                 className="mr-2 inline-block"
               >
                 {word}
+                {word === "hours," && (
+                  <motion.label
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{
+                      duration: 0.3,
+                      delay: (index + 1) * 0.1,
+                      ease: "easeInOut",
+                    }}
+                    className="checkBox ml-4 inline-block align-middle"
+                  >
+                    <input type="checkbox" />
+                  </motion.label>
+                )}
                 {word === "days" && (
                   <motion.label
                     initial={{ opacity: 0, scale: 0.8 }}
@@ -127,7 +141,7 @@ const Navbar = () => {
     <nav className="flex w-full items-center justify-between border-t border-b border-neutral-200 px-4 py-4 dark:border-neutral-800">
       <div className="flex items-center gap-2">
         <div className="size-7 rounded-full bg-gradient-to-br from-violet-500 to-pink-500" />
-        <h1 className="text-base font-bold md:text-2xl">Aceternity UI</h1>
+        <h1 className="text-base font-bold md:text-2xl">Prism.app</h1>
       </div>
       <div className="w-24 md:w-32">
         <AnimatedButton>
