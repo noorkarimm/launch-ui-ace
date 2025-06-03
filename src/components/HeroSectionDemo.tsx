@@ -82,7 +82,7 @@ export default function HeroSectionOne() {
           className="relative z-10 mt-8 flex flex-wrap items-center justify-center gap-4"
         >
           <div className="w-60">
-            <AnimatedButton withSparkle>
+            <AnimatedButton>
               Explore Now
             </AnimatedButton>
           </div>
