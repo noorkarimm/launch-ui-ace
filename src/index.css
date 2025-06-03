@@ -1,1 +1,412 @@
-[The full, raw code, without any markdown formatting, no triple backticks]
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 94.1%;
+    --sidebar-primary-foreground: 240 5.9% 10%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Animated Button Styles */
+@layer components {
+  .animated-button {
+    --black-700: rgba(26, 26, 26, 1);
+    --border_radius: 12px;
+    --transtion: 0.3s ease-in-out;
+    --offset: 2px;
+
+    cursor: pointer;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    transform-origin: center;
+
+    width: 100%;
+    height: 44px;
+    padding: 0 1rem;
+    background-color: #000000;
+
+    border: none;
+    border-radius: var(--border_radius);
+    transform: scale(calc(1 + (var(--active, 0) * 0.05)));
+
+    transition: transform var(--transtion);
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 5px;
+    color: white !important;
+  }
+
+  .animated-button-secondary {
+    background-color: transparent;
+    border: 2px solid #000000;
+    color: #000000 !important;
+  }
+
+  .dark .animated-button-secondary {
+    border-color: #ffffff;
+    color: #ffffff !important;
+  }
+
+  .animated-button::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+
+    border-radius: var(--border_radius);
+    box-shadow: inset 0 0.5px hsl(0, 0%, 100%), inset 0 -1px 2px 0 hsl(0, 0%, 0%),
+      0px 4px 10px -4px hsla(0 0% 0% / calc(1 - var(--active, 0))),
+      0 0 0 calc(var(--active, 0) * 0.25rem) hsl(260 97% 50% / 0.75);
+
+    transition: all var(--transtion);
+    z-index: -1;
+  }
+
+  .animated-button-secondary::before {
+    background-color: transparent;
+    border: 2px solid #000000;
+  }
+
+  .dark .animated-button-secondary::before {
+    border-color: #ffffff;
+  }
+
+  .animated-button::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 100%;
+    height: 100%;
+    background-color: hsla(260 97% 61% / 0.75);
+    background-image: radial-gradient(
+        at 51% 89%,
+        hsla(266, 45%, 74%, 1) 0px,
+        transparent 50%
+      ),
+      radial-gradient(at 100% 100%, hsla(266, 36%, 60%, 1) 0px, transparent 50%),
+      radial-gradient(at 22% 91%, hsla(266, 36%, 60%, 1) 0px, transparent 50%);
+    background-position: top;
+
+    opacity: var(--active, 0);
+    border-radius: var(--border_radius);
+    transition: opacity var(--transtion);
+    z-index: -1;
+  }
+
+  .animated-button:is(:hover, :focus-visible) {
+    --active: 1;
+  }
+
+  .animated-button:active {
+    transform: scale(1);
+  }
+
+  .animated-button .dots_border {
+    --size_border: calc(100% + 2px);
+
+    overflow: hidden;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: var(--size_border);
+    height: var(--size_border);
+    background-color: transparent;
+
+    border-radius: var(--border_radius);
+    z-index: -10;
+  }
+
+  .animated-button .dots_border::before {
+    content: "";
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: left;
+    transform: rotate(0deg);
+
+    width: 100%;
+    height: 2rem;
+    background-color: white;
+
+    mask: linear-gradient(transparent 0%, white 120%);
+    animation: rotate 2s linear infinite;
+  }
+
+  @keyframes rotate {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animated-button .text_button,
+  .animated-button span,
+  .animated-button > * {
+    position: relative;
+    z-index: 1;
+    font-size: 14px;
+    font-weight: 600;
+    color: white !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+  }
+
+  .animated-button-secondary .text_button,
+  .animated-button-secondary span,
+  .animated-button-secondary > * {
+    color: #000000 !important;
+    text-shadow: none;
+  }
+
+  .dark .animated-button-secondary .text_button,
+  .dark .animated-button-secondary span,
+  .dark .animated-button-secondary > * {
+    color: #ffffff !important;
+  }
+
+  .animated-button .sparkle {
+    position: relative;
+    z-index: 1;
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  .animated-button .sparkle .path {
+    fill: white;
+    stroke: white;
+    transform-origin: center;
+    color: white;
+  }
+
+  .animated-button:is(:hover, :focus) .sparkle .path {
+    animation: path 1.5s linear 0.5s infinite;
+  }
+
+  .animated-button .sparkle .path:nth-child(1) {
+    --scale_path_1: 1.2;
+  }
+  .animated-button .sparkle .path:nth-child(2) {
+    --scale_path_2: 1.2;
+  }
+  .animated-button .sparkle .path:nth-child(3) {
+    --scale_path_3: 1.2;
+  }
+
+  @keyframes path {
+    0%, 34%, 71%, 100% {
+      transform: scale(1);
+    }
+    17% {
+      transform: scale(var(--scale_path_1, 1));
+    }
+    49% {
+      transform: scale(var(--scale_path_2, 1));
+    }
+    83% {
+      transform: scale(var(--scale_path_3, 1));
+    }
+  }
+
+  .google-sign-in {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .icon {
+    height: 16px;
+    z-index: 1;
+    position: relative;
+  }
+
+  /* Checkbox Styles */
+  .clear {
+    clear: both;
+  }
+
+  .checkBox {
+    display: block;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 0.4rem;
+    background: white;
+    color: black;
+    border: 2px solid rgb(50, 50, 50);
+    border-bottom: 4px solid rgb(50, 50, 50);
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.3);
+    transform: translate(0, -3px);
+    transition: 0.2s;
+    transition-timing-function: linear;
+    position: relative;
+    overflow: visible;
+    background-color: white !important;
+  }
+
+  /* Dark mode specific styles with visible shadows */
+  @media (prefers-color-scheme: dark) {
+    .checkBox {
+      background: white !important;
+      color: black !important;
+      border: 2px solid rgb(50, 50, 50) !important;
+      border-bottom: 4px solid rgb(50, 50, 50) !important;
+      box-shadow: 0px 1px 3px 0px rgba(200, 200, 200, 0.4) !important;
+    }
+    
+    .checkBox:hover {
+      box-shadow: 0px 2px 5px 0px rgba(200, 200, 200, 0.6) !important;
+      background: white !important;
+    }
+  }
+
+  .dark .checkBox,
+  .dark-theme .checkBox,
+  [data-theme="dark"] .checkBox {
+    background: white !important;
+    color: black !important;
+    border: 2px solid rgb(50, 50, 50) !important;
+    border-bottom: 4px solid rgb(50, 50, 50) !important;
+    box-shadow: 0px 1px 3px 0px rgba(200, 200, 200, 0.4) !important;
+  }
+
+  .dark .checkBox:hover,
+  .dark-theme .checkBox:hover,
+  [data-theme="dark"] .checkBox:hover {
+    box-shadow: 0px 2px 5px 0px rgba(200, 200, 200, 0.6) !important;
+    background: white !important;
+  }
+
+  .checkBox:active,
+  .checkBox:has(input[type=checkbox]:checked) {
+    transform: translate(0, 0);
+    border-bottom: 2px solid rgb(50, 50, 50);
+    background: white !important;
+  }
+
+  .checkBox input[type=checkbox] {
+    position: absolute;
+    left: 50px;
+    visibility: hidden;
+  }
+
+  .transition {
+    transition: 0.2s linear;
+  }
+
+  .checkBox::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 24px;
+    height: 24px;
+    background-image: url('https://img.icons8.com/?size=100&id=VT7Kdr4sqyqf&format=png&color=000000');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 200;
+    opacity: 1;
+    transition: opacity 0.2s ease;
+  }
+
+  .checkBox:hover {
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.4);
+    background: white !important;
+  }
+}
