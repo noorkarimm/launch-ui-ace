@@ -1,3 +1,4 @@
+
 "use client";
 
 import { motion } from "motion/react";
@@ -60,7 +61,7 @@ export default function HeroSectionOne() {
                         delay: (index + 1) * 0.1,
                         ease: "easeInOut",
                       }}
-                      className="checkBox ml-4 inline-block align-middle"
+                      className="documentCheckBox ml-4 inline-block align-middle"
                     >
                       <input type="checkbox" />
                     </motion.label>
