@@ -1,4 +1,3 @@
-
 "use client";
 
 import { motion } from "motion/react";
@@ -101,14 +100,14 @@ export default function HeroSectionOne() {
           className="relative z-10 mt-8 flex flex-wrap items-center justify-center gap-4"
         >
           <div className="w-60">
-            <AnimatedButton>
+            <button className="button">
               Explore Now
-            </AnimatedButton>
+            </button>
           </div>
           <div className="w-60">
-            <AnimatedButton variant="secondary">
+            <button className="button button-secondary">
               Contact Support
-            </AnimatedButton>
+            </button>
           </div>
         </motion.div>
         <motion.div
@@ -149,9 +148,9 @@ const Navbar = () => {
         <h1 className="text-base font-bold md:text-2xl">Prism.app</h1>
       </div>
       <div className="w-24 md:w-32">
-        <AnimatedButton>
+        <button className="button">
           Login
-        </AnimatedButton>
+        </button>
       </div>
     </nav>
   );

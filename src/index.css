@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -84,13 +85,12 @@
   }
 }
 
-/* Animated Button Styles */
+/* New Button Styles */
 @layer components {
-  .animated-button {
-    --black-700: rgba(26, 26, 26, 1);
-    --border_radius: 12px;
-    --transtion: 0.3s ease-in-out;
-    --offset: 2px;
+  .button,
+  .button:focus {
+    --border_radius: 0.7rem;
+    --transtion: 0.2s linear;
 
     cursor: pointer;
     position: relative;
@@ -100,205 +100,118 @@
     justify-content: center;
     gap: 0.5rem;
 
-    transform-origin: center;
-
     width: 100%;
-    height: 44px;
-    padding: 0 1rem;
-    background-color: #000000;
-
-    border: none;
+    height: auto;
+    font-size: 17px;
+    padding: 10px 23px;
     border-radius: var(--border_radius);
-    transform: scale(calc(1 + (var(--active, 0) * 0.05)));
-
-    transition: transform var(--transtion);
-    font-size: 14px;
+    background: black;
+    color: white;
+    border: 0px solid rgb(200, 200, 200);
+    border-bottom: 0px solid rgb(200, 200, 200);
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.3);
+    transform: translate(0, -3px);
+    transition: var(--transtion);
     font-weight: 600;
     margin-top: 5px;
+    outline: none;
+  }
+
+  /* Secondary button variant */
+  .button-secondary {
+    background: transparent;
+    border: 2px solid black;
+    color: black !important;
+  }
+
+  .dark .button-secondary {
+    border-color: white;
     color: white !important;
   }
 
-  .animated-button-secondary {
-    background-color: transparent;
-    border: 2px solid #000000;
-    color: #000000 !important;
+  /* Active/Click effect - press down */
+  .button:active {
+    transform: translate(0, 0);
+    border-bottom: 2px solid rgb(200, 200, 200);
   }
 
-  .dark .animated-button-secondary {
-    border-color: #ffffff;
-    color: #ffffff !important;
+  /* Hover effect - keeps black background with slight variation */
+  .button:hover {
+    background: #1a1a1a;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.35);
   }
 
-  .animated-button::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    width: 100%;
-    height: 100%;
-    background-color: #000000;
-
-    border-radius: var(--border_radius);
-    box-shadow: inset 0 0.5px hsl(0, 0%, 100%), inset 0 -1px 2px 0 hsl(0, 0%, 0%),
-      0px 4px 10px -4px hsla(0 0% 0% / calc(1 - var(--active, 0))),
-      0 0 0 calc(var(--active, 0) * 0.25rem) hsl(260 97% 50% / 0.75);
-
-    transition: all var(--transtion);
-    z-index: -1;
+  .button-secondary:hover {
+    background: rgba(0, 0, 0, 0.1);
   }
 
-  .animated-button-secondary::before {
-    background-color: transparent;
-    border: 2px solid #000000;
+  .dark .button-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
   }
 
-  .dark .animated-button-secondary::before {
-    border-color: #ffffff;
+  /* Focus effect */
+  .button:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
   }
 
-  .animated-button::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    width: 100%;
-    height: 100%;
-    background-color: hsla(260 97% 61% / 0.75);
-    background-image: radial-gradient(
-        at 51% 89%,
-        hsla(266, 45%, 74%, 1) 0px,
-        transparent 50%
-      ),
-      radial-gradient(at 100% 100%, hsla(266, 36%, 60%, 1) 0px, transparent 50%),
-      radial-gradient(at 22% 91%, hsla(266, 36%, 60%, 1) 0px, transparent 50%);
-    background-position: top;
-
-    opacity: var(--active, 0);
-    border-radius: var(--border_radius);
-    transition: opacity var(--transtion);
-    z-index: -1;
+  /* Remove complex pseudo-elements */
+  .button::before,
+  .button::after {
+    display: none;
   }
 
-  .animated-button:is(:hover, :focus-visible) {
-    --active: 1;
+  /* Remove dots border animation */
+  .button .dots_border {
+    display: none;
   }
 
-  .animated-button:active {
-    transform: scale(1);
-  }
-
-  .animated-button .dots_border {
-    --size_border: calc(100% + 2px);
-
-    overflow: hidden;
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    width: var(--size_border);
-    height: var(--size_border);
-    background-color: transparent;
-
-    border-radius: var(--border_radius);
-    z-index: -10;
-  }
-
-  .animated-button .dots_border::before {
-    content: "";
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transform-origin: left;
-    transform: rotate(0deg);
-
-    width: 100%;
-    height: 2rem;
-    background-color: white;
-
-    mask: linear-gradient(transparent 0%, white 120%);
-    animation: rotate 2s linear infinite;
-  }
-
-  @keyframes rotate {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  .animated-button .text_button,
-  .animated-button span,
-  .animated-button > * {
+  /* Text styling */
+  .button .text_button,
+  .button span,
+  .button > * {
     position: relative;
     z-index: 1;
-    font-size: 14px;
+    font-size: 17px;
     font-weight: 600;
     color: white !important;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
     pointer-events: none;
   }
 
-  .animated-button-secondary .text_button,
-  .animated-button-secondary span,
-  .animated-button-secondary > * {
-    color: #000000 !important;
-    text-shadow: none;
+  .button-secondary .text_button,
+  .button-secondary span,
+  .button-secondary > * {
+    color: black !important;
   }
 
-  .dark .animated-button-secondary .text_button,
-  .dark .animated-button-secondary span,
-  .dark .animated-button-secondary > * {
-    color: #ffffff !important;
+  .dark .button-secondary .text_button,
+  .dark .button-secondary span,
+  .dark .button-secondary > * {
+    color: white !important;
   }
 
-  .animated-button .sparkle {
+  /* Icon styling */
+  .button .sparkle {
     position: relative;
     z-index: 1;
     width: 1.2rem;
     height: 1.2rem;
   }
 
-  .animated-button .sparkle .path {
+  .button .sparkle .path {
     fill: white;
     stroke: white;
-    transform-origin: center;
     color: white;
   }
 
-  .animated-button:is(:hover, :focus) .sparkle .path {
-    animation: path 1.5s linear 0.5s infinite;
+  /* Remove sparkle animation */
+  .button:is(:hover, :focus) .sparkle .path {
+    animation: none;
   }
 
-  .animated-button .sparkle .path:nth-child(1) {
-    --scale_path_1: 1.2;
-  }
-  .animated-button .sparkle .path:nth-child(2) {
-    --scale_path_2: 1.2;
-  }
-  .animated-button .sparkle .path:nth-child(3) {
-    --scale_path_3: 1.2;
-  }
-
-  @keyframes path {
-    0%, 34%, 71%, 100% {
-      transform: scale(1);
-    }
-    17% {
-      transform: scale(var(--scale_path_1, 1));
-    }
-    49% {
-      transform: scale(var(--scale_path_2, 1));
-    }
-    83% {
-      transform: scale(var(--scale_path_3, 1));
-    }
-  }
+  /* Remove keyframe animations */
+  @keyframes rotate {}
+  @keyframes path {}
 
   .google-sign-in {
     display: flex;
@@ -311,6 +224,7 @@
     height: 16px;
     z-index: 1;
     position: relative;
+    filter: brightness(10);
   }
 
   /* Checkbox Styles */
