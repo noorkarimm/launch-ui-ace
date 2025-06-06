@@ -235,8 +235,8 @@
   .checkBox {
     display: block;
     cursor: pointer;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 0.4rem;
     background: white;
     color: black;
@@ -307,8 +307,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 24px;
-    height: 24px;
+    width: 40px;
+    height: 40px;
     background-image: url('https://img.icons8.com/?size=100&id=nWKrwLbuxwX4&format=png&color=000000');
     background-size: contain;
     background-repeat: no-repeat;
