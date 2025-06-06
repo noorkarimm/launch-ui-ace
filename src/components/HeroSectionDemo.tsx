@@ -22,7 +22,7 @@ export default function HeroSectionOne() {
       {/* Hero Content Section with LetterGlitch Background */}
       <div className="relative px-4 py-10 md:py-20">
         {/* LetterGlitch Background - only for hero content */}
-        <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 pointer-events-none opacity-5">
           <LetterGlitch 
             glitchColors={['#2b4539', '#61dca3', '#61b3dc']}
             glitchSpeed={100}
