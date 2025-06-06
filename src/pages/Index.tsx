@@ -1,19 +1,9 @@
 
 import HeroSectionOne from "@/components/HeroSectionDemo";
-import LetterGlitch from "@/components/LetterGlitch";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-white dark:bg-black relative overflow-hidden">
-      {/* LetterGlitch Background */}
-      <LetterGlitch 
-        glitchColors={['#2b4539', '#61dca3', '#61b3dc']}
-        glitchSpeed={100}
-        centerVignette={false}
-        outerVignette={false}
-        smooth={true}
-      />
-      
       {/* Dotted Layout Guide Lines */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Vertical dotted lines */}
